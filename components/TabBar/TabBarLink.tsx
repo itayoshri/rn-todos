@@ -6,9 +6,14 @@ import { Icon } from '../icons/svgFactory'
 export interface TabBarLinkProps {
   label: string
   focused: boolean
+  onPress: () => void
 }
 
-export default function TabBarLink({ label, focused }: TabBarLinkProps) {
+export default function TabBarLink({
+  label,
+  focused,
+  onPress,
+}: TabBarLinkProps) {
   const color = useMemo(() => {
     switch (focused) {
       case false:
@@ -30,7 +35,7 @@ export default function TabBarLink({ label, focused }: TabBarLinkProps) {
       default:
         break
     }
-  }, [label])
+  }, [label, focused])
 
   return (
     <TouchableOpacity
@@ -42,6 +47,7 @@ export default function TabBarLink({ label, focused }: TabBarLinkProps) {
         alignItems: 'center',
         paddingTop: 10,
       }}
+      onPress={onPress}
     >
       {icon}
       <Text
