@@ -1,6 +1,11 @@
 import { Text, TextInput, View } from 'react-native'
+import {
+  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler'
+import Animated, { useAnimatedGestureHandler } from 'react-native-reanimated'
 import { useProvider } from '../../contexts'
-import { ITask } from '../../interfaces'
+import AddTask from './Add'
 import DoneTick from './Done'
 
 export interface TaskProps {
@@ -8,7 +13,7 @@ export interface TaskProps {
 }
 
 export default function Task({ index }: TaskProps) {
-  const { tasks, setTasks } = useProvider()
+  const { setTasks } = useProvider()
 
   return (
     <View
@@ -16,11 +21,11 @@ export default function Task({ index }: TaskProps) {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         borderBottomColor: 'white',
         width: '100%',
         paddingHorizontal: 25,
-        paddingVertical: 25,
+        paddingVertical: 15,
       }}
     >
       <DoneTick index={index} />

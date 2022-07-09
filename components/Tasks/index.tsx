@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { View } from 'react-native'
 import { useProvider } from '../../contexts'
+import AddTask from './Add'
 import Task from './Task'
 
 export default function TasksView() {
@@ -16,6 +17,7 @@ export default function TasksView() {
       {tasks.map((task, index) => (
         <Task index={index} key={index} />
       ))}
+      <AddTask />
     </View>
   )
 }
