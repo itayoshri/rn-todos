@@ -1,5 +1,6 @@
 import { View } from 'react-native'
 import { BACKGROUND_COLOR } from '../App'
+import TasksView from '../components/Tasks'
 import Task from '../components/Tasks/Task'
 
 export default function HomeScreen() {
@@ -11,7 +12,7 @@ export default function HomeScreen() {
         backgroundColor: BACKGROUND_COLOR,
       }}
     >
-      <Task task="Lorem ipsum dolor sit amet" done={true} />
+      <TasksView />
     </View>
   )
 }

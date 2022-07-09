@@ -1,12 +1,15 @@
-import { Text, View } from 'react-native'
+import { Text, TextInput, View } from 'react-native'
+import { useProvider } from '../../contexts'
+import { ITask } from '../../interfaces'
 import DoneTick from './Done'
 
 export interface TaskProps {
-  task: string
-  done: boolean
+  index: number
 }
 
-export default function Task({ task, done }: TaskProps) {
+export default function Task({ index }: TaskProps) {
+  const { tasks, setTasks } = useProvider()
+
   return (
     <View
       style={{
@@ -20,9 +23,17 @@ export default function Task({ task, done }: TaskProps) {
         paddingVertical: 25,
       }}
     >
-      <DoneTick done={done} />
+      <DoneTick index={index} />
       <View style={{ height: '100%', width: 12 }} />
-      <Text style={{ color: 'white', fontWeight: '500' }}>{task}</Text>
+      <TextInput
+        style={{ color: 'white', fontWeight: '500', flexGrow: 1 }}
+        onChangeText={(newInput) =>
+          setTasks((prev) => {
+            prev[index].task = newInput
+            return [...prev]
+          })
+        }
+      />
     </View>
   )
 }
